@@ -1,0 +1,14 @@
+use cxm1569;
+
+SELECT * FROM Library;
+SELECT * FROM Publisher;
+SELECT * FROM Book;
+SELECT * FROM Member;
+SELECT * FROM Author;
+SELECT * FROM Books_author;
+SELECT * FROM Books_available;
+SELECT * FROM Books_require;
+SELECT * FROM Lib_staff;
+SELECT * FROM Books_issue;
+SELECT * FROM Lib_staff_member
+SELECT * FROM Member_phone;
