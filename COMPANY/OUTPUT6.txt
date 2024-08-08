@@ -1,0 +1,86 @@
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> source DBTable.txt;
+ERROR 1050 (42S01): Table 'employee' already exists
+ERROR 1050 (42S01): Table 'department' already exists
+ERROR 1364 (HY000): Field 'DNUMBER' doesn't have a default value
+ERROR 1050 (42S01): Table 'dept_locations' already exists
+ERROR 1050 (42S01): Table 'project' already exists
+ERROR 1050 (42S01): Table 'works_on' already exists
+ERROR 1050 (42S01): Table 'dependent' already exists
+mysql> select * from employee;
+Empty set (0.02 sec)
+
+mysql> source DBTable.txt;
+ERROR 1050 (42S01): Table 'employee' already exists
+ERROR 1050 (42S01): Table 'department' already exists
+ERROR 1364 (HY000): Field 'DNUMBER' doesn't have a default value
+ERROR 1050 (42S01): Table 'dept_locations' already exists
+ERROR 1050 (42S01): Table 'project' already exists
+ERROR 1050 (42S01): Table 'works_on' already exists
+ERROR 1050 (42S01): Table 'dependent' already exists
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from department;
+Empty set (0.01 sec)
+
+mysql> DESCRIBE EMPLOYEE;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| Fname     | varchar(15)   | YES  |     | NULL    |       |
+| Minit     | char(1)       | YES  |     | NULL    |       |
+| Lname     | varchar(15)   | YES  |     | NULL    |       |
+| Ssn       | char(13)      | NO   | PRI | NULL    |       |
+| Bdate     | date          | YES  |     | NULL    |       |
+| Address   | varchar(30)   | YES  |     | NULL    |       |
+| Sex       | char(1)       | YES  |     | NULL    |       |
+| Salary    | decimal(10,2) | YES  |     | NULL    |       |
+| Super_ssn | char(9)       | YES  | MUL | NULL    |       |
+| Dno       | int           | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> DESCRIBE DEPARTMENT;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| DNAME          | varchar(30)   | YES  | UNI | NULL    |       |
+| DNUMBER        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(13)      | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> LOAD DATA INFILE
+    -> '/home/cxm1569/DEPARTMENT.csv' INTO TABLE DEPARTMENT FIELDS TERMINATED BY ',' ENCLOSED BY '''' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+ERROR 1045 (28000): Access denied for user 'cxm1569'@'%' (using password: YES)
+mysql> YES
+    -> 

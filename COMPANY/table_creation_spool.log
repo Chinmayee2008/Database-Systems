@@ -1,0 +1,36 @@
+mysql> source creation.txt
+ERROR 1046 (3D000): No database selected
+ERROR 1046 (3D000): No database selected
+ERROR 1046 (3D000): No database selected
+ERROR 1046 (3D000): No database selected
+ERROR 1046 (3D000): No database selected
+ERROR 1046 (3D000): No database selected
+mysql> use cxm1569
+Database changed
+mysql> source creation.txt
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.02 sec)
+
+mysql> exit

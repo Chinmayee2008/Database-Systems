@@ -1,0 +1,14 @@
+mysql> INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+    -> VALUES ('James', 'E', 'Jordan', '888665155', '1927-11-10', '450 Stone, Houston, TX', 'M', 55000.00, NULL, 1);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEE (Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno)
+    -> VALUES ('James', 'E', 'Jordan', '888665155', '1927-11-10', '450 Stone, Houston, TX', 'M', 55000.00, NULL, 1);
+ERROR 1062 (23000): Duplicate entry '888665155' for key 'employee.PRIMARY'
+mysql> INSERT INTO DEPENDENT (Essn, Dependent_name, Sex, Bdate, Relationship)
+    -> VALUES ('999887777', 'John Smith', 'M', STR_TO_DATE('19-JUL-1956', '%d-%b-%Y'), 'Spouse');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`cxm1569`.`dependent`, CONSTRAINT `dependent_ibfk_1` FOREIGN KEY (`Essn`) REFERENCES `employee` (`Ssn`))
+mysql> INSERT INTO DEPARTMENT (Dname, Dnumber, Mgr_ssn, Mgr_start_date)
+    -> VALUES ('Networking', 3, '110110110', '2009-05-15');
+ERROR 1062 (23000): Duplicate entry '3' for key 'department.PRIMARY'
+mysql> exit

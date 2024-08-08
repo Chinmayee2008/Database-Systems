@@ -1,0 +1,16 @@
+mysql> DELIMITER //
+mysql> 
+mysql> CREATE TRIGGER UpdateOverTimeTrigger AFTER INSERT ON WORKS_ON
+    -> FOR EACH ROW
+    -> BEGIN
+    ->     IF NEW.Hours > 40 THEN
+    ->         UPDATE EMPLOYEE
+    ->         SET OverTimeCount = OverTimeCount + 1
+    ->         WHERE Ssn = NEW.Essn;
+    ->     END IF;
+    -> END //
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> 
+mysql> DELIMITER ;
+mysql> exit

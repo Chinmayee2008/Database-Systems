@@ -1,0 +1,314 @@
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> source DBTable.txt;
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> DESCRIBE department;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| Dname          | varchar(15)   | YES  | UNI | NULL    |       |
+| Dnumber        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(9)       | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> DESCRIBE employee;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| Fname     | varchar(15)   | YES  |     | NULL    |       |
+| Minit     | char(1)       | YES  |     | NULL    |       |
+| Lname     | varchar(15)   | YES  |     | NULL    |       |
+| Ssn       | char(9)       | NO   | PRI | NULL    |       |
+| Bdate     | date          | YES  |     | NULL    |       |
+| Address   | varchar(30)   | YES  |     | NULL    |       |
+| Sex       | char(1)       | YES  |     | NULL    |       |
+| Salary    | decimal(10,2) | YES  |     | NULL    |       |
+| Super_ssn | char(9)       | YES  | MUL | NULL    |       |
+| Dno       | int           | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> DESCRIBE dependent;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Essn           | char(9)     | NO   | PRI | NULL    |       |
+| Dependent_name | varchar(15) | NO   | PRI | NULL    |       |
+| Sex            | char(1)     | YES  |     | NULL    |       |
+| Bdate          | date        | YES  |     | NULL    |       |
+| Relationship   | varchar(8)  | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from department;
+Empty set (0.01 sec)
+
+mysql> UPDATE DNAME VARCHAR(15) TO VARCHAR(30)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHAR(15) TO VARCHAR(30)' at line 1
+mysql> ALTER TABLE DEPARTMENT;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> ALTER TABLE DEPARTMENT
+    -> ALTER TABLE DNAME
+    -> VARCHAR(30)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE DNAME
+VARCHAR(30)' at line 2
+mysql> ALTER TABLE DEPARTMENT
+    -> ALTER COLUMN DNAME
+    -> VARCHAR(30)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHAR(30)' at line 3
+mysql> ALTER TABLE DEPARTMENT
+    -> MODIFY DNAME
+    -> VARCHAR(30)
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE department;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| DNAME          | varchar(30)   | YES  | UNI | NULL    |       |
+| Dnumber        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(9)       | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> ALTER TABLE DEPARTMENT
+    -> MODIFY Mgr_ssn
+    -> char(13);
+ERROR 1832 (HY000): Cannot change column 'Mgr_ssn': used in a foreign key constraint 'department_ibfk_1'
+mysql> ALTER TABLE EMPLOYEE
+    -> MODIFY SSN
+    -> CHAR(13);
+ERROR 1833 (HY000): Cannot change column 'Ssn': used in a foreign key constraint 'employee_ibfk_1' of table 'cxm1569.employee'
+mysql> DELETE FROM TABLE EMPLOYEE
+    -> WHERE SSN = CHAR(9);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE EMPLOYEE
+WHERE SSN = CHAR(9)' at line 1
+mysql> ALTER TABLE DEPARTMENT
+    -> DROP COLUMN Mgr_ssn;
+ERROR 1828 (HY000): Cannot drop column 'Mgr_ssn': needed in a foreign key constraint 'department_ibfk_1'
+mysql> ALTER TABLE EMPLOYEE 
+    -> DROP FOREIGN KEY 'SSN';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''SSN'' at line 2
+mysql> ALTER TABLE EMPLOYEE
+    -> DROP FOREIGN KEY 'Mgr_ssn';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Mgr_ssn'' at line 2
+mysql> ALTER TABLE EMPLOYEE
+    -> DROP FOREIGN KEY 'Mgr_ssn'
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Mgr_ssn'' at line 2
+mysql> DROP IF EXISTS TABLE DEPARTMENT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF EXISTS TABLE DEPARTMENT' at line 1
+mysql> DROP TABLE IF EXISTS DEPARTMENT;
+ERROR 3730 (HY000): Cannot drop table 'department' referenced by a foreign key constraint 'dept_locations_ibfk_1' on table 'dept_locations'.
+mysql> DROP TABLE IF EXISTS DEPT_LOCATIONS;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'department_ibfk_1' on table 'department'.
+mysql> DROP TABLE IF EXISTS PROJECT;
+ERROR 3730 (HY000): Cannot drop table 'project' referenced by a foreign key constraint 'works_on_ibfk_2' on table 'works_on'.
+mysql> DROP TABLE IF EXISTS WORKS_0N;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> DROP TABLE IF EXISTS PROJECT;
+ERROR 3730 (HY000): Cannot drop table 'project' referenced by a foreign key constraint 'works_on_ibfk_2' on table 'works_on'.
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'department_ibfk_1' on table 'department'.
+mysql> DROP TABLE IF EXISTS DEPARTMENT;
+ERROR 3730 (HY000): Cannot drop table 'department' referenced by a foreign key constraint 'project_ibfk_1' on table 'project'.
+mysql> DROP TABLE IF EXISTS DEPENDENT;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'works_on_ibfk_1' on table 'works_on'.
+mysql> DROP TABLE IF EXISTS WORKS_ON;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DROP TABLE IF EXISTS WORKS_ON;
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'department_ibfk_1' on table 'department'.
+mysql> DROP TABLE IF EXISTS DEPSRTMENT;
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+ERROR 3730 (HY000): Cannot drop table 'employee' referenced by a foreign key constraint 'department_ibfk_1' on table 'department'.
+mysql> DROP TABLE IF EXISTS DEPARTMENT;
+ERROR 3730 (HY000): Cannot drop table 'department' referenced by a foreign key constraint 'project_ibfk_1' on table 'project'.
+mysql> DROP TABLE IF EXISTS PROJECT;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DROP TABLE IF EXISTS DEPARTMENT;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DROP TABLE IF EXISTS EMPLOYEE;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> DROP TABLE IF EXISTS DEPT_LOCATIONS;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> tee OUTPUT2.lst;
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> source DBTable.txt;
+Query OK, 0 rows affected (0.09 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> DESCRIBE employee;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| Fname     | varchar(15)   | YES  |     | NULL    |       |
+| Minit     | char(1)       | YES  |     | NULL    |       |
+| Lname     | varchar(15)   | YES  |     | NULL    |       |
+| Ssn       | char(13)      | NO   | PRI | NULL    |       |
+| Bdate     | date          | YES  |     | NULL    |       |
+| Address   | varchar(30)   | YES  |     | NULL    |       |
+| Sex       | char(1)       | YES  |     | NULL    |       |
+| Salary    | decimal(10,2) | YES  |     | NULL    |       |
+| Super_ssn | char(9)       | YES  | MUL | NULL    |       |
+| Dno       | int           | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> DESCRIBE department;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| Dname          | varchar(15)   | YES  | UNI | NULL    |       |
+| Dnumber        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(13)      | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> ALTER TABLE DEPARTMENT
+    -> MODIFY COLUMN DNAME
+    -> VARCHAR(30);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE department;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| DNAME          | varchar(30)   | YES  | UNI | NULL    |       |
+| Dnumber        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(13)      | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> INSERT INTO DEPARTMENT (DNAME, DNUMBER, MGR_SSN, MGR_START_DATE, SALARY)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> INSERT INTO DEPARTMENT(MGR_START_DATE)
+    -> VALUES (START_TO_DATE( '01-JAN-2023' , '%d-%b-%Y));
+    '> ;
+    '> ;;
+    '> ;
+    '> 
+    '> 
+    '> 
+    '> cleR
+    '> '\C'
+ERROR: 
+Usage: \C charset_name | charset charset_name
+    -> '\c'
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> 
+    -> stop
+    -> ';;;;;
+    '> ;
+    '> ;;;;;
+    '> ;
+    '> 

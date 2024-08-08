@@ -1,0 +1,26 @@
+mysql> use cxm1569;
+Database changed
+mysql> source QUERIES3.txt;
+ERROR 1406 (22001): Data too long for column 'Fname' at row 1
+ERROR 1054 (42S22): Unknown column 'DLOCATION' in 'field list'
+ERROR 1054 (42S22): Unknown column 'JOB_TITLE' in 'field list'
+mysql> DESCRIBE EMPLOYEE;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| Fname     | varchar(15)   | YES  |     | NULL    |       |
+| Minit     | char(1)       | YES  |     | NULL    |       |
+| Lname     | varchar(15)   | YES  |     | NULL    |       |
+| Ssn       | char(13)      | NO   | PRI | NULL    |       |
+| Bdate     | date          | YES  |     | NULL    |       |
+| Address   | varchar(30)   | YES  |     | NULL    |       |
+| Sex       | char(1)       | YES  |     | NULL    |       |
+| Salary    | decimal(10,2) | YES  |     | NULL    |       |
+| Super_ssn | char(9)       | YES  | MUL | NULL    |       |
+| Dno       | int           | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+10 rows in set (0.02 sec)
+
+mysql> tee OUTPUT6.txt;
+mysql> use cxm1569;
+Database changed

@@ -1,0 +1,158 @@
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> source DBTable.txt;
+ERROR 1050 (42S01): Table 'employee' already exists
+ERROR 1050 (42S01): Table 'department' already exists
+ERROR 1050 (42S01): Table 'dept_locations' already exists
+ERROR 1050 (42S01): Table 'project' already exists
+ERROR 1050 (42S01): Table 'works_on' already exists
+ERROR 1050 (42S01): Table 'dependent' already exists
+mysql> DESCRIBE DEPARTMENT;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| DepartmentID   | int          | NO   | PRI | NULL    | auto_increment |
+| DepartmentName | varchar(100) | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.02 sec)
+
+mysql> source table.txt;
+ERROR: 
+Failed to open file 'table.txt', error: 2
+mysql> source CREATE_TABLES_P1.txt;
+ERROR: 
+Failed to open file 'CREATE_TABLES_P1.txt', error: 2
+mysql> source CREATE_TABLES.txt;
+ERROR: 
+Failed to open file 'CREATE_TABLES.txt', error: 2
+mysql> source text.txt;
+ERROR: 
+Failed to open file 'text.txt', error: 2
+mysql> source DBTable.txt;
+ERROR: 
+Failed to open file 'DBTable.txt', error: 2
+mysql> tee OUTPUT1.lst;
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> source DBTable.txt;
+ERROR 1050 (42S01): Table 'employee' already exists
+ERROR 1050 (42S01): Table 'department' already exists
+ERROR 1050 (42S01): Table 'dept_locations' already exists
+ERROR 1050 (42S01): Table 'project' already exists
+ERROR 1050 (42S01): Table 'works_on' already exists
+ERROR 1050 (42S01): Table 'dependent' already exists
+mysql> DESCRIBE department;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| DepartmentID   | int          | NO   | PRI | NULL    | auto_increment |
+| DepartmentName | varchar(100) | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+mysql> mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from department;
++------------+---------+-----------+----------------+
+| Dname      | Dnumber | Mgr_ssn   | Mgr_start_date |
++------------+---------+-----------+----------------+
+| Test       |       2 | 555555500 | 2010-02-02     |
+| Networking |       3 | 110110110 | 2009-05-15     |
+| Software   |       6 | 111111100 | 1999-05-15     |
+| Hardware   |       7 | 444444400 | 1998-05-15     |
+| Sales      |       8 | 555555500 | 1997-01-01     |
+| HR         |       9 | 112244668 | 1989-02-01     |
+| QA         |      11 | 913323708 | 2010-02-02     |
++------------+---------+-----------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from employee;
++----------+-------+-----------+-----------+------------+--------------------------------+------+----------+-----------+------+---------------+
+| Fname    | Minit | Lname     | Ssn       | Bdate      | Address                        | Sex  | Salary   | Super_ssn | Dno  | OverTimeCount |
++----------+-------+-----------+-----------+------------+--------------------------------+------+----------+-----------+------+---------------+
+| Alex     | C     | Yu        | 001614905 | 1980-10-17 | 626 Mary St Dallas TX          | M    | 50000.00 | 444444400 |    6 |             0 |
+| Lisa     | G     | House     | 101248268 | 1975-06-29 | 12 Maple St Austin TX          | F    | 85000.00 | NULL      |    7 |             0 |
+| Sunil    | D     | Gupta     | 110110110 | 2001-02-01 | 4312 Bowen Rd Arlington TX     | M    | 80000.00 | 111111100 |    3 |             0 |
+| Jared    | D     | James     | 111111100 | 1966-10-10 | 123 Peachtr Atlanta GA         | M    | 85000.00 | NULL      |    6 |             0 |
+| Jon      | C     | Jones     | 111111101 | 1967-11-14 | 111 Allgood Atlanta GA         | M    | 45000.00 | 111111100 |    6 |             0 |
+| Justin   | null  | Mark      | 111111102 | 1966-01-12 | 2342 May Atlanta GA            | M    | 40000.00 | 111111100 |    6 |             0 |
+| Brad     | C     | Knight    | 111111103 | 1968-02-13 | 176 Main St. Atlanta GA        | M    | 44000.00 | 111111100 |    6 |             0 |
+| Juan     | G     | Linda     | 112244668 | 1965-06-23 | 1210 Apple St Austin TX        | F    | 55000.00 | NULL      |    9 |             0 |
+| Debra    | T     | Hall      | 202843824 | 1983-03-11 | 45 NY St Rochester NY          | F    | 30000.00 | 555555501 |    6 |             0 |
+| Richard  | T     | Koelbel   | 214370999 | 1976-04-03 | 50 Elk St Chicago IL           | M    | 85000.00 | 999999999 |    4 |             0 |
+| Evan     | E     | Wallis    | 222222200 | 1958-01-16 | 134 Pelham Milwaukee WI        | M    | 92000.00 | NULL      |    7 |             0 |
+| Josh     | U     | Zell      | 222222201 | 1954-05-22 | 266 McGrady Milwaukee WI       | M    | 56000.00 | 222222200 |    7 |             0 |
+| Andy     | C     | Vile      | 222222202 | 1944-06-21 | 1967 Jordan Milwaukee WI       | M    | 53000.00 | 222222200 |    7 |             0 |
+| Tom      | G     | Brand     | 222222203 | 1966-12-16 | 112 Third St Milwaukee WI      | M    | 62500.00 | 222222200 |    7 |             0 |
+| Jenny    | F     | Vos       | 222222204 | 1967-11-11 | 263 Mayberry Milwaukee WI      | F    | 61000.00 | 222222201 |    7 |             0 |
+| Chris    | A     | Carter    | 222222205 | 1960-03-21 | 565 Jordan Milwaukee WI        | F    | 43000.00 | 222222201 |    7 |             0 |
+| John     | T     | Ed        | 222333444 | 1981-02-18 | 4505 West St Rochester NY      | M    | 30000.00 | 555555501 |    6 |             0 |
+| Jennifer | A     | Joy       | 223344667 | 1976-05-19 | 1204 Main St Miami FL          | F    | 45000.00 | 666666613 |    8 |             0 |
+| willie   | D     | Mary      | 234234234 | 1961-12-20 | 101 South St Arlington TX      | F    | 12000.00 | 112244668 |    9 |             0 |
+| Erin     | A     | Maxfield  | 242535609 | 1971-12-22 | 123 Copper St Arlington TX     | F    | 72000.00 | 555555500 |    8 |             0 |
+| Wilson   | A     | Holmes    | 242916639 | 1971-06-02 | 21 South Co Arlington TX       | M    | 72500.00 | 555555500 |    4 |             0 |
+| Jake     | D     | Sheen     | 245239264 | 1954-12-25 | 20 North Co Arlington TX       | M    | 52000.00 | 112244668 |    6 |             0 |
+| Megan    | G     | Jones     | 254937381 | 1961-03-02 | 528 Stone CT Chicago IL        | F    | 62000.00 | 666666600 |    8 |             0 |
+| Jisha    | A     | Carpenter | 292740167 | 1985-05-29 | 194 Beachdr Miami FL           | F    | 15000.00 | 666666613 |    1 |             0 |
+| Kim      | C     | Grace     | 333333300 | 1970-10-23 | 667 Mills Ave Sacramento CA    | F    | 79000.00 | NULL      |    6 |             0 |
+| Jeff     | H     | Chase     | 333333301 | 1970-01-07 | 15 Bradbury Sacramento CA      | M    | 44000.00 | 333333300 |    6 |             0 |
+| Jose     | H     | Barbara   | 343434344 | 1955-02-28 | 905 East St Kleen TX           | F    | 35000.00 | 444444400 |    6 |             0 |
+| Leonard  | H     | Moody     | 349273344 | 1973-02-09 | 908 Greek Row Austin TX        | M    | 45000.00 | 444444400 |    7 |             0 |
+| Percy    | M     | Liang     | 398172999 | 1991-06-12 | 14 Maple St Austin TX          | M    | 55000.00 | NULL      |    9 |             0 |
+| Cindy    | K     | Burklow   | 432765098 | 1984-02-23 | 2015 Neil Ave Miami FL         | F    | 45000.00 | 444444402 |    6 |             0 |
+| Gregory  | G     | Laurie    | 444212096 | 1969-09-15 | 78 Tree Cir Houston TX         | M    | 90000.00 | 444444400 |    7 |             0 |
+| Kim      | G     | Ted       | 444222666 | 1968-04-15 | 3648 Tree Cir Austin TX        | M    | 50000.00 | 999999999 |    8 |             0 |
+| Alex     | D     | Freed     | 444444400 | 1950-10-09 | 4333 Pillsbury Milwaukee WI    | M    | 89000.00 | NULL      |    7 |             0 |
+| Bonnie   | S     | Bays      | 444444401 | 1956-06-19 | 111 Hollow Milwaukee WI        | F    | 70000.00 | 444444400 |    7 |             0 |
+| Alec     | C     | Best      | 444444402 | 1966-06-18 | 233 Solid Milwaukee WI         | M    | 60000.00 | 444444400 |    7 |             0 |
+| Sam      | S     | Snedden   | 444444403 | 1977-07-31 | 97 Windy St Milwaukee WI       | M    | 48000.00 | 444444400 |    7 |             0 |
+| John     | C     | James     | 555555500 | 1975-06-30 | 766 Bloomington Sacramento CA  | M    | 81000.00 | NULL      |    8 |             0 |
+| Nandita  | K     | Ball      | 555555501 | 1969-04-16 | 222 Howard Sacramento CA       | M    | 62000.00 | 555555500 |    6 |             0 |
+| Andrea   | M     | Sondrini  | 614370310 | 1996-12-30 | 1450 Worthington St Houston TX | F    | 65000.00 | 444444401 |    5 |             0 |
+| Michael  | A     | Morgan    | 636669233 | 1984-05-11 | 26 Sunset Blvd Miami FL        | M    | 73500.00 | 666666612 |    5 |             0 |
+| Bob      | B     | Bender    | 666666600 | 1968-04-17 | 8794 Garfield Chicago IL       | M    | 96000.00 | NULL      |    8 |             0 |
+| Jill     | J     | Jarvis    | 666666601 | 1966-01-14 | 6234 Lincoln Chicago IL        | F    | 36000.00 | 666666600 |    8 |             0 |
+| Kate     | W     | King      | 666666602 | 1966-04-16 | 1976 Boone Trace Chicago IL    | F    | 44000.00 | 666666600 |    8 |             0 |
+| Lyle     | G     | Leslie    | 666666603 | 1963-06-09 | 417 Hancock Ave Chicago IL     | M    | 41000.00 | 666666601 |    8 |             0 |
+| Billie   | J     | King      | 666666604 | 1960-01-01 | 556 Washington Chicago IL      | F    | 38000.00 | 666666603 |    8 |             0 |
+| Jon      | A     | Kramer    | 666666605 | 1964-08-22 | 1988 Windy Creek Seattle WA    | M    | 41500.00 | 666666603 |    8 |             0 |
+| Ray      | H     | King      | 666666606 | 1949-08-16 | 213 Delk Road Seattle WA       | M    | 44

@@ -1,0 +1,11 @@
+mysql> DELETE FROM EMPLOYEE
+    -> WHERE Ssn = '398172999';
+ERROR 1046 (3D000): No database selected
+mysql> use cxm1569
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> DELETE FROM EMPLOYEE WHERE Ssn = '398172999';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`cxm1569`.`works_on`, CONSTRAINT `works_on_ibfk_1` FOREIGN KEY (`Essn`) REFERENCES `employee` (`Ssn`))
+mysql> exit

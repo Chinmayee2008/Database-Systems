@@ -1,0 +1,78 @@
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
+Empty set (0.02 sec)
+
+mysql> source DBTable.txt;
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+ERROR 1364 (HY000): Field 'Dnumber' doesn't have a default value
+Query OK, 0 rows affected (0.07 sec)
+
+Query OK, 0 rows affected (0.08 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> ALTER TABLE DEPARTMENT
+    -> MODIFY COLUMN DNAME
+    -> VARCHAR(30);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE DEPARTMENT
+    -> MODIFY COLUMN DNUMBER
+    -> INT(10)
+    -> ;
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> use cxm1569;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_cxm1569 |
++-------------------+
+| department        |
+| dependent         |
+| dept_locations    |
+| employee          |
+| project           |
+| works_on          |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> DESCRIBE department;
++----------------+---------------+------+-----+---------+-------+
+| Field          | Type          | Null | Key | Default | Extra |
++----------------+---------------+------+-----+---------+-------+
+| DNAME          | varchar(30)   | YES  | UNI | NULL    |       |
+| DNUMBER        | int           | NO   | PRI | NULL    |       |
+| Mgr_ssn        | char(13)      | YES  | MUL | NULL    |       |
+| Mgr_start_date | date          | YES  |     | NULL    |       |
+| Salary         | decimal(10,2) | YES  |     | NULL    |       |
++----------------+---------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> start * from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from employee' at line 1
+mysql> start from * employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * employee' at line 1
+mysql> select * from employee;
+Empty set (0.01 sec)
+
+mysql> select * from works_on;
+Empty set (0.02 sec)
+
+mysql> source DBTable.txt;
+ERROR 1050 (42S01): Table 'employee' already exists
+ERROR 1050 (42S01): Table 'department' already exists
+ERROR 1364 (HY000): Field 'DNUMBER' doesn't have a default value
+ERROR 1050 (42S01): Table 'dept_locations' already exists
+ERROR 1050 (42S01): Table 'project' already exists
+ERROR 1050 (42S01): Table 'works_on' already exists
+ERROR 1050 (42S01): Table 'dependent' already exists
+mysql> tee OUTPUT3.lst;

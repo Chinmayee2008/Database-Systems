@@ -1,0 +1,64 @@
+-- Create the EMPLOYEE table with the 'OverTimeCount' attribute
+CREATE TABLE EMPLOYEE (
+    Fname VARCHAR(15),
+    Minit VARCHAR(5),
+    Lname VARCHAR(15),
+    Ssn CHAR(9) PRIMARY KEY,
+    Bdate DATE,
+    Address VARCHAR(30),
+    Sex VARCHAR(5),
+    Salary DECIMAL(10, 2),
+    Super_ssn CHAR(9),
+    Dno INT,
+    OverTimeCount INT DEFAULT 0,  -- New attribute for overtime count
+    FOREIGN KEY (Super_ssn) REFERENCES EMPLOYEE(Ssn)
+);
+
+-- Create the DEPARTMENT table
+CREATE TABLE DEPARTMENT (
+    Dname VARCHAR(15),
+    Dnumber INT PRIMARY KEY,
+    Mgr_ssn CHAR(9),
+    Mgr_start_date DATE,
+    UNIQUE (Dname),
+    FOREIGN KEY (Mgr_ssn) REFERENCES EMPLOYEE(Ssn)
+);
+
+-- Create the DEPT_LOCATIONS table
+CREATE TABLE DEPT_LOCATIONS (
+    Dnumber INT NOT NULL,
+    Dlocation VARCHAR(15) NOT NULL,
+    PRIMARY KEY (Dnumber, Dlocation),
+    FOREIGN KEY (Dnumber) REFERENCES DEPARTMENT(Dnumber)
+);
+
+-- Create the PROJECT table
+CREATE TABLE PROJECT (
+    Pname VARCHAR(15),
+    Pnumber INT PRIMARY KEY,
+    Plocation VARCHAR(15),
+    Dnum INT,
+    UNIQUE (Pname),
+    FOREIGN KEY (Dnum) REFERENCES DEPARTMENT(Dnumber)
+);
+
+-- Create the WORKS_ON table
+CREATE TABLE WORKS_ON (
+    Essn CHAR(9),
+    Pno INT,
+    Hours DECIMAL(3, 1),
+    PRIMARY KEY (Essn, Pno),
+    FOREIGN KEY (Essn) REFERENCES EMPLOYEE(Ssn),
+    FOREIGN KEY (Pno) REFERENCES PROJECT(Pnumber)
+);
+
+-- Create the DEPENDENT table
+CREATE TABLE DEPENDENT (
+    Essn CHAR(9) NOT NULL,
+    Dependent_name VARCHAR(15) NOT NULL,
+    Sex CHAR,
+    Bdate DATE,
+    Relationship VARCHAR(8),
+    PRIMARY KEY (Essn, Dependent_name),
+    FOREIGN KEY (Essn) REFERENCES EMPLOYEE(Ssn)
+);
